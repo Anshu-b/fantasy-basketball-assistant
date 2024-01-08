@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+<header>
+<h1> Player Stats </h1>
+</header>
+   <form action="/stats" method="post">
+      <select class="button" id="stat" required name="stat">
+         <option value="" disabled selected>Select Stat to Sort By</option>
+         {% for stat in stat_selection %}
+            {% if stat != "name" %}
+               <option value="{{ stat }}"> {{ stat }}</option>
+            {% endif %}
+         {% endfor %}
+      </select>
+      <p></p>
+      <select class="button" id="order" required name="order">
+         <option value="" disabled selected>Select Order in Which to Sort</option>
+         <option value="ASC">Ascending</option>
+         <option value="DESC">Descending</option>
+      </select>
+      <p></p>
+      <button class="button" type="submit" id="submit">Enter</button>
+   </form>
+{% endblock %}

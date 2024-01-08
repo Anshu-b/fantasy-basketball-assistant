@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+  <header>
+    <h1> Breakout Watch List</h1>
+  </header>
+  <div class="box2">
+    <h6> To qualify as a "breakout" player, they must average at least 4 points more than their pre-season projections. </h6>
+    <h6> This list may be useful for currently higher-performing teams, to recognize and sell off their "overperfoming" assets for safer options. Sell high opportunities! </h6>
+    <h6> On the other hand, teams may want to risk an investment in these players, in case they continue to play beyond their projections later in the season. </h6>
+  </div>
+    <div>
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Position</th>
+            <th scope="col">Position Rank</th>
+            <th scope="col">Team</th>
+            <th scope="col">Fantasy Points Per Game</th>
+            <th scope="col">Projected Fantasy Points Per Game</th>
+            <th scope="col">Differential</th>
+            <th scope="col">Injury Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            {% for player in sorted_nonstart_zero %}
+              <tr>
+                <td> {{ player["name"] }} </td>
+                <td> {{ player["position"] }} </td>
+                <td> {{ player["posRANK"] }} </td>
+                <td> {{ player["proTeam"] }} </td>
+                <td> {{ player["fantasy_points_per_game"] }} </td>
+                <td> {{ player["projected_avg_points"] }} </td>
+                <td> {{ player["differential"] }} </td>
+                <td>
+                  {% if player["injured"] == 1 %}
+                    INJURED
+                  {% else %}
+                    HEALTHY
+                  {% endif %}
+                </td>
+              </tr>
+          {% endfor %}
+          {% for player in sorted_start_zero %}
+              <tr>
+                <td> {{ player["name"] }} </td>
+                <td> {{ player["position"] }} </td>
+                <td> {{ player["posRANK"] }} </td>
+                <td> {{ player["proTeam"] }} </td>
+                <td> {{ player["fantasy_points_per_game"] }} </td>
+                <td> {{ player["projected_avg_points"] }} </td>
+                <td> {{ player["differential"] }} </td>
+                <td>
+                  {% if player["injured"] == 1 %}
+                    INJURED
+                  {% else %}
+                    HEALTHY
+                  {% endif %}
+                </td>
+              </tr>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+     </div>
+{% endblock %}

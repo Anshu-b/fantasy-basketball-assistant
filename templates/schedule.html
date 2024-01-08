@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+   <script>
+      let contentForm;
+      document.addEventListener('DOMContentLoaded', function ()
+      {
+         contentForm = document.getElementById("schedule_form");
+         var submit1 = document.getElementById('submit1');
+         var submit2 = document.getElementById('submit2');
+         var submit3 = document.getElementById('submit3');
+         submit1.addEventListener('click', showAdditionalQuestion);
+         submit2.addEventListener('click', () => contentForm.submit());
+         submit3.addEventListener('click', () => contentForm.submit());
+      });
+
+      function showAdditionalQuestion(event)
+      {
+         console.log("hi")
+         //event.preventDefault();
+         var schedule_format = document.getElementById('schedule_format').value;
+         var weekQuestion = document.getElementById('week');
+         var submit2 = document.getElementById('submit2');
+         var teamQuestion = document.getElementById('team');
+         var submit3 = document.getElementById('submit3');
+         if (schedule_format === 'weekly')
+         {
+            weekQuestion.style.display = 'block';
+            submit2.style.display = 'block';
+            weekQuestion.style.margin = '3px auto';
+            submit2.style.margin = '3px auto';
+         }
+         else if (schedule_format === 'teamly')
+         {
+            teamQuestion.style.display = 'block';
+            submit3.style.display = 'block';
+            teamQuestion.style.margin = '3px auto';
+            submit3.style.margin = '3px auto';
+         }
+        else
+         {
+             weekQuestion.style.display = 'none';
+         }
+      }
+   </script>
+   <header>
+      <h1> Schedule </h1>
+   </header>
+   <form action="/schedule" method="post" id="schedule_form">
+      <select class="button" id="schedule_format" required name="schedule_format">
+         <option value="" disabled selected>Select Schedule Format</option>
+         <option value="weekly">By Week</option>
+         <option value="teamly">By Team</option>
+      </select>
+      <button class="button" type="submit" id="submit1">Enter</button>
+
+      <select class="button" id="week" name="week" required style="display: none;">
+      <option value="" disabled selected>Select Week to View</option>
+      {% for list in week_ranges_list %}
+         {% set start_date = list[0] %}
+         {% set end_date = list[-1] %}
+         <option value="{{ start_date }}-{{ end_date }}"> {{ start_date }} to {{ end_date }} </option>
+      {% endfor %}
+      </select>
+      <p></p>
+      <button class="button" type="submit" style="display: none;" id="submit2">Enter</button>
+
+      <select class="button" id="team" name="team" required style="display: none;">
+      <option value="" disabled selected>Select Team to View</option>
+      {% for franchise in nba_franchises %}
+         {% if franchise['proTeam'] != 'FA' %}
+            <option value="{{ franchise['proTeam'] }}"> {{ franchise['proTeam'] }} </option>
+         {% endif %}
+      {% endfor %}
+      </select>
+      <p></p>
+      <button class="button" type="submit" style="display: none;" id="submit3">Enter</button>
+   </form>
+{% endblock %}

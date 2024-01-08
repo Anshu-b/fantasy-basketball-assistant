@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+<header>
+<h1> Research </h1>
+</header>
+   <form action="/research" method="post">
+      <select class="button" id="choice" required name="choice">
+         <option value="" disabled selected>Select Player Research Criteria</option>
+         <option value="bust">Bust Watch</option>
+         <option value="breakout">Breakout Watch</option>
+         <option value="injury">Injury Replacement</option>
+      </select>
+      <button class="button" type="submit" id="submit">Enter</button>
+{% endblock %}

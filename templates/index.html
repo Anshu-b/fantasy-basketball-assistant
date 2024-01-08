@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/static/styles.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+   <header>
+      <h1> Fantasy Basketball Assistant 🏀 </h1>
+   </header>
+   <div class="box">
+      <h5> Hi! Welcome to Fantasy Basketball Assistant, your one stop to know everything you need to get started on NBA fantasy! </h5>
+   </div class="box">
+   <p> </p>
+   <div class="box">
+      <h3> <a href="/schedule">Trying to Stream for Waivers? </a> </h3>
+      <p> Head over to the schedule tab to view scheduling by team, or by week! Use this to stream waiver wires and trade/draft for advantageous playoff scheduling! </p>
+   </div>
+   <div class="box">
+      <h3><a href="/trade">Looking to Trade?</a></h3>
+      <p> Check out the trade analyzer tab to view a detailed statiscal analysis of your trade to help you determine if you are winning or losing a trade! </p>
+   </div>
+   <div class="box">
+      <h3><a href="/stats">Sort by Stats?</a></h3>
+      <p> Click the stats tab to research players by fantasy points or individual stats - crucial for category leagues and pre-draft analysis! </p>
+   </div>
+   <div class="box">
+      <h3><a href="/research">Deeper Research?</a></h3>
+      <p> Injuries are unfortunate for many, but open up opportunity for other players. Find streaming targets based on recent injuries! </p>
+   </div>
+   <div class="box">
+      <h3>Coming Soon</a></h3>
+      <p> We hope to implement features to allow you to import your specific league and get trade/waiver wire advice! </p>
+   </div>
+
+   <footer class="text-center">
+      Ansh Bhatnagar CS50 Final Project
+  </footer>
+{% endblock %}

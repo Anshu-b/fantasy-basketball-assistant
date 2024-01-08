@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+{% if order == "ASC" %}
+    <header>
+    <h1> Bottom of the League in {{stat}} </h1>
+    </header>
+{% else %}
+    <header>
+    <h1> League Leaders in {{stat}} </h1>
+    </header>
+{% endif %}
+<div style="text-align: center;">
+    <table style>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Team</th>
+          <th scope="col">Position</th>
+          <th scope="col">Position Rank</th>
+          <th scope="col"> {{stat}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for player in ordered_list %}
+          <tr>
+              <td> {{player["name"]}} </td>
+              <td> {{player["proTeam"]}} </td>
+              <td> {{player["position"]}} </td>
+              <td> {{player["posRANK"]}} </td>
+              <td> {{player[stat]}} </td>
+          </tr>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+     </div>
+{% endblock %}

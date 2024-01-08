@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+    <header>
+    <h1> Injury Replacement Search</h1>
+    </header>
+    <div class="box2">
+        <h6> The players listed in red rows are currently injured. The following players are on the same team and the same position, and may provide value if currently available given opportunity. </h6>
+      </div>
+    <div>
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Position</th>
+            <th scope="col">Team</th>
+            <th scope="col">Injury Status</th>
+            <th scope="col">Position Rank</th>
+            <th scope="col">Fantasy Points Per Game</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            {% for i in range(injured_player_list|length) %}
+                <tr style="background-color: red;">
+                    <td> {{ injured_player_list[i]["name"] }} </td>
+                    <td> {{ injured_player_list[i]["position"] }} </td>
+                    <td> {{ injured_player_list[i]["proTeam"] }} </td>
+                    <td> INJURED </td>
+                    <td> {{ injured_player_list[i]["posRANK"] }} </td>
+                    <td> {{ injured_player_list[i]["fantasy_points_per_game"] }} </td>
+                </tr>
+                {% set list = injury_replacements[i] %}
+                {% for replacement in list %}
+                <tr>
+                    <td> {{ replacement["name"] }} </td>
+                    <td> {{ replacement["position"] }} </td>
+                    <td> {{ replacement["proTeam"] }} </td>
+                    <td> HEALTHY </td>
+                    <td> {{ replacement["posRANK"] }} </td>
+                    <td> {{ replacement["fantasy_points_per_game"] }} </td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+     </div>
+{% endblock %}

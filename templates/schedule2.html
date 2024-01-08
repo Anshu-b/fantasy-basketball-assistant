@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+<header>
+<h2> Games Played This Week by Team </h2>
+</header>
+<h6 class="box2"> Use this chart to find waiver wires with the most games played that week </h6>
+<div class="container mt-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Team</th>
+        <th scope="col">Week Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for franchise in nba_franchises %}
+        <tr>
+            {% if franchise["proTeam"] != "FA" %}
+              <td> {{franchise["proTeam"]}} </td>
+              <td> {{num_games_that_week[franchise["proTeam"]]}} </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+      </tr>
+    </tbody>
+    <p></p>
+    <p></p>
+    <p></p>
+  </table>
+
+
+  <header>
+  <h2 > Game Log </h2>
+  </header>
+  <h6 class="box2"> Browse this table to determine schedule and matchup difficulty  </h6>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Team</th>
+          <th scope="col">Opponent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for game in games_that_week %}
+          <tr>
+                <td> {{game["DATE"]}} </td>
+                <td> {{game["team"]}} </td>
+                <td> {{game["opponent"]}} </td>
+          </tr>
+        {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+   </div>
+{% endblock %}

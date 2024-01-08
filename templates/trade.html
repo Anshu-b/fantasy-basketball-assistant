@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+<script>
+   function generateInputBoxes() {
+       var numAway = document.getElementById("trade_away").value;
+       var numReceive = document.getElementById("trade_receive").value;
+       if (numAway > 13 || numReceive > 13)
+       {
+            alert("Please enter values less than 13.");
+            return;
+        }
+       var div1 = document.getElementById("away");
+       var div2 = document.getElementById("receive");
+       //div1.innerHTML = '';
+       //div2.innerHTML = '';
+
+       for (var i = 0; i < numAway; i++) {
+           var input1 = document.createElement("input");
+           input1.type = "text";
+           input1.name = "input1_values[]";
+           input1.className = "button"
+           input1.placeholder = "Trading Away " + (i + 1);
+           div1.appendChild(input1);
+           div1.appendChild(document.createElement("br"));
+       }
+
+       for (var j = 0; j < numReceive; j++) {
+           var input2 = document.createElement("input");
+           input2.type = "text";
+           input2.className = "button"
+           input2.name = "input2_values[]";
+           input2.placeholder = "Receiving " + (j + 1);
+           div2.appendChild(input2);
+           div2.appendChild(document.createElement("br"));
+       }
+       div2.appendChild(document.createElement("br"));
+       var submit = document.createElement("input");
+       submit.type = "submit";
+       submit.value = "Submit";
+       submit.className = "button"
+       div2.appendChild(submit);
+   }
+</script>
+   <header>
+   <h1>Trade Analyzer</h1>
+   </header>
+   <p></p><p></p>
+   <label class="box2">Enter the number of Players Being Traded Away </label>
+   <p></p>
+   <input class="button" type="number" id="trade_away" min="1"></input>
+   <p></p>
+   <label class="box2">Enter the number of Players Being Received </label>
+   <p></p>
+   <input class="button" type="number" id="trade_receive" min="1"> </input>
+   <p></p>
+   <button class="button" onclick="generateInputBoxes()">Generate Slots</button>
+   <p></p>
+   <p></p>
+
+   <form action="/trade" method="post">
+      <div id="away">
+      </div>
+      <p></p>
+      <p></p>
+      <div id="receive">
+      </div>
+   </form>
+
+{% endblock %}

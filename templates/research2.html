@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+   <h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+
+{% block main %}
+  <header>
+    <h1> Bust Watch List</h1>
+  </header>
+  <div class="box2">
+    <h6> To qualify as a "bust" player, they must average at least 4 points less than their pre-season projections. </h6>
+    <h6> This list may be useful for underperforming teams, to recognize and sell off their tanking assets. </h6>
+    <h6> On the other hand, winning teams may want to risk an investment in these players, in case they live up to their projections later in the season. Buy low opportunities. </h6>
+  </div>
+    <div>
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Position</th>
+            <th scope="col">Position Rank</th>
+            <th scope="col">Team</th>
+            <th scope="col">Fantasy Points Per Game</th>
+            <th scope="col">Projected Fantasy Points Per Game</th>
+            <th scope="col">Differential</th>
+            <th scope="col">Injury Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for player in sorted_bust_list %}
+          <tr>
+              <td> {{player["name"]}} </td>
+              <td> {{player["position"]}} </td>
+              <td> {{player["posRANK"]}} </td>
+              <td> {{player["proTeam"]}} </td>
+              <td> {{player["fantasy_points_per_game"]}} </td>
+              <td> {{player["projected_avg_points"]}} </td>
+              <td> {{player["fantasy_points_per_game"] - player["projected_avg_points"]}} </td>
+              {% if player["injured"] == 1 %}
+                <td>INJURED</td>
+              {% else %}
+                <td>HEALTHY</td>
+              {% endif %}
+          </tr>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+     </div>
+{% endblock %}

@@ -1,0 +1,173 @@
+{% extends "layout.html" %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+{% block title %}
+<h1>Fantasy Basketball Assistant</h1>
+{% endblock %}
+{% block main %}
+<h4 class="box2">
+   TRADING
+   {% for player in trade_away %}
+      {{ player }},
+   {% endfor %}
+   FOR
+   {% for player in trade_recieve %}
+      {{ player }},
+   {% endfor %}
+</h4>
+<p></p>
+<p></p>
+<h3 class="box3">{{response}}</h3>
+<p></p>
+<p></p>
+
+<div>
+   <br><br><br>
+</div>
+
+<div class="box2">
+<h3> What You Give Up </h3>
+<h4> Giving up {{giving_slots}} Players </h4>
+</div>
+
+<table class="table1">
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Team</th>
+<th scope="col">Position</th>
+<th scope="col">Position Rank</th>
+<th scope="col">Injury Status</th>
+<th scope="col">Fantasy Points Per Game</th>
+<th scope="col">Points</th>
+<th scope="col">Blocks</th>
+<th scope="col">Steals</th>
+<th scope="col">Assists</th>
+<th scope="col">Rebounds</th>
+<th scope="col">Turnovers</th>
+<th scope="col">Minutes</th>
+<th scope="col">Games Played</th>
+<th scope="col">7 Day Fantasy Average</th>
+<th scope="col">15 Day Fantasy Average</th>
+<th scope="col">30 Day Fantasy Average</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+{% for player in give_list %}
+<tr>
+<td> {{player["name"]}} </td>
+<td> {{player["proTeam"]}} </td>
+<td> {{player["position"]}} </td>
+<td> {{player["posRANK"]}} </td>
+<td> {{player["injured"]}} </td>
+<td> {{player["fantasy_points_per_game"]}} </td>
+<td> {{player["points"]}} </td>
+<td> {{player["blocks"]}} </td>
+<td> {{player["steals"]}} </td>
+<td> {{player["assists"]}} </td>
+<td> {{player["rebounds"]}} </td>
+<td> {{player["turnovers"]}} </td>
+<td> {{player["minutes"]}} </td>
+<td> {{player["games_played"]}} </td>
+<td> {{player["last_7_fantasy_points_per_game"]}} </td>
+<td> {{player["last_15_fantasy_points_per_game"]}} </td>
+<td> {{player["last_30_fantasy_points_per_game"]}} </td>
+</tr>
+{% endfor %}
+</tr>
+</tbody>
+</table>
+<h5 class="box2"> Total Valuation: {{giving_valuation}} </h5>
+</div>
+
+<div>
+   <br><br><br>
+</div>
+
+<div>
+<div class="box2">
+<h2> What You Recieve </h2>
+<h4> Recieving {{recieving_slots}} Players </h4>
+</div>
+<table class="table1">
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Team</th>
+<th scope="col">Position</th>
+<th scope="col">Position Rank</th>
+<th scope="col">Injury Status</th>
+<th scope="col">Fantasy Points Per Game</th>
+<th scope="col">Points</th>
+<th scope="col">Blocks</th>
+<th scope="col">Steals</th>
+<th scope="col">Assists</th>
+<th scope="col">Rebounds</th>
+<th scope="col">Turnovers</th>
+<th scope="col">Minutes</th>
+<th scope="col">Games Played</th>
+<th scope="col">7 Day Fantasy Average</th>
+<th scope="col">15 Day Fantasy Average</th>
+<th scope="col">30 Day Fantasy Average</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+{% for player in recieve_list %}
+<tr>
+<td> {{player["name"]}} </td>
+<td> {{player["proTeam"]}} </td>
+<td> {{player["position"]}} </td>
+<td> {{player["posRANK"]}} </td>
+<td> {{player["injured"]}} </td>
+<td> {{player["fantasy_points_per_game"]}} </td>
+<td> {{player["points"]}} </td>
+<td> {{player["blocks"]}} </td>
+<td> {{player["steals"]}} </td>
+<td> {{player["assists"]}} </td>
+<td> {{player["rebounds"]}} </td>
+<td> {{player["turnovers"]}} </td>
+<td> {{player["minutes"]}} </td>
+<td> {{player["games_played"]}} </td>
+<td> {{player["last_7_fantasy_points_per_game"]}} </td>
+<td> {{player["last_15_fantasy_points_per_game"]}} </td>
+<td> {{player["last_30_fantasy_points_per_game"]}} </td>
+</tr>
+{% endfor %}
+</tr>
+</tbody>
+</table>
+<h5 class="box2">Total Valuation: {{recieving_valuation}} </h5>
+</div>
+
+<div>
+   <br><br><br>
+</div>
+
+<div>
+   <h2 class="box2"> Key </h2>
+   <table class="table1">
+   <thead>
+      <tr>
+         <th scope="col">Factor</th>
+         <th scope="col">Effect on Valuation</th>
+      </tr>
+   </thead>
+      <tr>
+         <td> Injury </td>
+         <td> (-3) Depends on severity of injury but a standard benchmark for the risk of uncertainty </td>
+      </tr>
+      <tr>
+         <td> 30 Day Average is 4+ Points Better than Season Fantasy Points Average </td>
+         <td> (+3) Typically this occurs when a player starts the season on a fluke cold-streak so the 30 day average may be a more accurate representation than the fantasy average. </td>
+      </tr>
+      <tr>
+         <td> 30 Day Average is 4+ Points Worse than Season Fantasy Points Average </td>
+         <td> (-3) Typically this occurs when a player starts the season on a fluke hot-streak so the 30 day average may be a more accurate representation than the fantasy average. </td>
+      </tr>
+      <tr>
+         <td> Extra Roster Slot </td>
+         <td> (+25) An extra roster spot is valuable, and in most leagues can be used to get a waiver wire or activate an IR player capable of providing at least around 27 fantasy points/game </td>
+      </tr>
+</div>
+{% endblock %}
