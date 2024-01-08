@@ -157,3 +157,6 @@ def research():
             return render_template("research4.html", injured_player_list=injured_player_list, injury_replacements=injury_replacements)
     else:
         return render_template("research.html")
+        
+if __name__ == '__main__':
+    app.run()
