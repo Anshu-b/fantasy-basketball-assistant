@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 db = SQL("sqlite:///project.db")
 
 #Load in the example league using API functions
-league = League(league_id=1193171671, year=2025, espn_s2="AECsoGyILCezMlwBxyf6b0JntNit1rLHsRL6SkBG1m406LNsC%2Fm%2FJ5HfdmG8AO0qFL6gfBuuyuJH66EFiZsrGmTiNfMfmeqKFHF%2BYQmaiHWPM9G59sP3aimL7mlZTLI53R8yDSCUxsIq%2FzL7Tew6CP2QcAXcGur%2FiJPS0TenItb9Sa0v61VoEm1Paf0wnJ7YTPzhMjAlSsdgUCwdJOre5pXlV14g48%2BtKe8kd2dGMH20zSvXY3Nd45nwteooY%2FUoqxlZZSDnCACjewMKFsIZchMFTkaR7WvyZ3w%2FZS5kcmm5eA%3D%3D")
+league = League(league_id=1193171671, year=2025, espn_s2='AECsoGyILCezMlwBxyf6b0JntNit1rLHsRL6SkBG1m406LNsC%2Fm%2FJ5HfdmG8AO0qFL6gfBuuyuJH66EFiZsrGmTiNfMfmeqKFHF%2BYQmaiHWPM9G59sP3aimL7mlZTLI53R8yDSCUxsIq%2FzL7Tew6CP2QcAXcGur%2FiJPS0TenItb9Sa0v61VoEm1Paf0wnJ7YTPzhMjAlSsdgUCwdJOre5pXlV14g48%2BtKe8kd2dGMH20zSvXY3Nd45nwteooY%2FUoqxlZZSDnCACjewMKFsIZchMFTkaR7WvyZ3w%2FZS5kcmm5eA%3D%3D', swid='{88C2672A-F883-4852-AA8F-EA5CD6B8DB7C}')
 league.fetch_league()
 
 #using API function to gather free agent players
